@@ -13,13 +13,7 @@ def preprocess_input(x, v2=True):
         x = x - 0.5
         x = x * 2.0
     return x
-#------------------------------------------------------------------------------------------
-emotion_model_path = 'emotion_models/fer2013_mini_XCEPTION.102-0.66.hdf5'
-labels = {0: 'angry', 1: 'disgust', 2: 'fear', 3: 'happy',
-                4: 'sad', 5: 'surprise', 6: 'neutral'}
-emotion_classifier = load_model(emotion_model_path, compile=False)
-emotion_target_size = emotion_classifier.input_shape[1:3]
-emotion_window = []
+
 
 
 #-----------------------------------------------------------------------------------------------
@@ -56,7 +50,13 @@ def emoti():
         emotion_text = labels[emotion_label_arg]
         emoticon.append(emotion_text)
         return emoticon
-
+#------------------------------------------------------------------------------------------
+emotion_model_path = 'emotion_models/fer2013_mini_XCEPTION.102-0.66.hdf5'
+labels = {0: 'angry', 1: 'disgust', 2: 'fear', 3: 'happy',
+                4: 'sad', 5: 'surprise', 6: 'neutral'}
+emotion_classifier = load_model(emotion_model_path, compile=False)
+emotion_target_size = emotion_classifier.input_shape[1:3]
+emotion_window = []
 application = Flask(__name__)
 
 @application.route("/")
